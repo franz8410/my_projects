@@ -1,12 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
+from pymongo import MongoClient
 
+client = MongoClient('localhost', 27017)
+db = client.mobilecard
+
+## HTML 화면 보여주기
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-
-if __name__ == '__main__':
-    app.run()
+def homework():
+    return render_template('login.html')

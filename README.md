@@ -3,40 +3,42 @@
 # 나의 프로젝트
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ohahohah/readme-template/graphs/commit-activity) 
 
-> 프로젝트 간략 소개 한 문장 
-- 웹사이트 url 
-- 사이트에 대한 1-2단락 설명
+> 프로젝트 소개
+- Back to the School - 초등학교, 중학교, 고등학교 Mobile Card 제작하기
+- https://brunch.co.kr/@hsjeon1015/5
 
 ## 핵심 기능  Key Feature
-- (예시) 실시간 지역별 날씨에 맞는 옷차림 정보를 알려줍니다.
-- (예시) 미세먼지 정보를 파악할 수 있습니다.
+### 로그인 및 가입
+- 카카오계정 로그인 
+- 로그아웃 
+- 가입/회원등록 
+
+### 초등학교, 중학교, 고등학교 검색 + 유저 데이터 입력
+- 학교 검색 : 검색어 입력 -> 조회 
+- 학교 위치 출력 : 카카오맵 연
+- 이름, 닉네임, 메모 입력
+
+### 학교 모바일 카 만들기
+- 이미지 값, 입력된 값, 학교이름, 학교주소, 학교위치 정보를 유저별로 저장
+
+## 삭제 및 수정하
+- 발급받은 학생증 삭제 및 수정하기
 
 ## 사용 How To Use
-- 사용하고 싶도록 유용한 몇 가지 예를 적습니다. 코드 블록과 스크린샷 포함.
-- (wiki가 있을 경우) _더 많은 예시와 사용 예제는 [Wiki](wiki)를 참고하세요._
-![](header.png)
+- (추후 첨)
 
 ## Contributing
-*(프로젝트 기여자가 있을 경우 적습니다)*
-- Thanks to @기여자이름
+- made by @franz
 
 ## Reference
-*(참고 리소스,  code snippet, 라이센스 정보를 표기합니다)*
-- (예시) [네이버 지도 API](링크url) : 장소카드 지도화면에 사용
-- (예시) [Teachable Machine](https://teachablemachine.withgoogle.com/) : 절하는 pose MachineLearning Model 
+[카카오계정 로그인](https://developers.kakao.com/docs/latest/ko/kakaologin/common)
+[초등학교, 중학교, 고등학교 위치 데이터](https://www.data.go.kr/tcs/dss/selectStdDataDetailView.do?publicDataPk=15021148)
+[카카오맵](https://apis.map.kakao.com/web/sample/staticMap/)
+[페이스북 포스팅](https://developers.facebook.com/docs/graph-api/using-graph-api#publishing)
 
 ## Links
-*(사람이 읽기 쉽게 요약된 링크 정보를 추가합니다. 현재 리포지토리의 정보를 적습니다)*
-- Project homepage: (예시) https://yourname.github.io/github-tutorial/
-- Repository: (예시) https://github.com/ohahohah/github-tutorial
-- 관련 프로젝트
-  - 프로젝트 이름 : (예시) https://github.com/ohahohah/readme-template
-  - 프로젝트 이름: (예시) https://github.com/someones/awesome-project/
+- Project page: (추가예)
+- Repository: https://github.com/franz8410/my_projects
 
 ## License
-*(공동작업자가 있을 경우 모두 적어줍니다)*  
-이름1 – [이메일 주소1](mailto:이메일주소@example.com)  
-이름2 - [이메일 주소2](mailto:이메일주소@example.com)  
-
-XYZ license를 준수합니다. ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.  
-(예시) [https://github.com/yourname/github-link/LICENSE.md](https://github.com/ohahohah/)
+XYZ license를 준수합니다.  ㄴ
