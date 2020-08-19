@@ -10,4 +10,5 @@ db = client.mobilecard
 ## HTML 화면 보여주기
 @app.route('/')
 def homework():
-    return render_template('login.html')
+    return render_template('home.html')
+

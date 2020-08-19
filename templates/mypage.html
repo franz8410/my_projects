@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Back to the School</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+        <style>
+            p {
+                margin: 20px 0px;
+            }
+
+            .headline {
+                float: right;
+                padding-right: 30px;
+            }
+
+            h1 {
+                padding-top: 50px;
+            }
+
+            h3 {
+                padding-top: 50px;
+            }
+
+            .header {
+                padding-top: 15px;
+                padding-bottom: 15px;
+
+            }
+        </style>
+
+        <script>
+            function cardDelete() {
+                confirm("삭제하시겠습니까?");
+            }
+
+            function cardPublish() {
+                alert("곧 지원될 기능입니다.");
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Back to the School : My Page</h1>
+                    <div class="header">
+                        <a class="headline" onclick="logOut()">로그아웃</a>
+                        <a class="headline" href="home.html">홈으로가기</a>
+                    </div>
+                    <p></p>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#my_elementary">초등학교</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#my_middle">중학교</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#my_high">고등학교</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="my_elementary">
+                            <h3>초등학교 카드</h3>
+                            <p>유저가 발급받은 카드에 저장된 초등학교 이름이 노출될겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 초등학교 위치가 노출될 겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 유저의 이름이 노출될 겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 유저의 졸업년도가 노출될 겁니다</p>
+                            <button onclick="cardDelete()">삭제하기</button>
+                            <button onclick="cardPublish()">톡으로보내기</button>
+                        </div>
+                        <div class="tab-pane fade" id="my_middle">
+                            <h3>중학교 카드</h3>
+                            <p>유저가 발급받은 카드에 저장된 중학교 이름이 노출될겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 중학교 위치가 노출될 겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 유저의 이름이 노출될 겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 유저의 졸업년도가 노출될 겁니다</p>
+                            <button onclick="cardDelete()">삭제하기</button>
+                            <button onclick="cardPublish()">톡으로보내기</button>
+
+                        </div>
+                        <div class="tab-pane fade" id="my_high">
+                            <h3>고등학교 카드</h3>
+                            <p>유저가 발급받은 카드에 저장된 고등학교 이름이 노출될겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 고등학교 위치가 노출될 겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 유저의 이름이 노출될 겁니다</p>
+                            <p>유저가 발급받은 카드에 저장된 유저의 졸업년도가 노출될 겁니다</p>
+                            <button onclick="cardUpdate()">수정하기</button>
+                            <button onclick="cardPublish()">톡으로보내기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

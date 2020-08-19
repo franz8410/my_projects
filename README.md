@@ -37,7 +37,7 @@
 [페이스북 포스팅](https://developers.facebook.com/docs/graph-api/using-graph-api#publishing)
 
 ## Links
-- Project page: (추가예)
+- Project page: (추가예정)
 - Repository: https://github.com/franz8410/my_projects
 
 ## License
