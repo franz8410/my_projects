@@ -7,14 +7,15 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
 db = client.mobilecard
 
+
 ## HTML 화면 보여주기
 @app.route('/')
 def home():
     return render_template('home.html')
 
 
-@app.route('/mypage')
-def mypage():
+@app.route('/my_page')
+def my_page():
     return render_template('my_page.html')
 
 
