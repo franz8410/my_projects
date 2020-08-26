@@ -28,7 +28,7 @@ def web_hook():
     os.system('cd /home/ubuntu/my_projects && git pull')
     return jsonify({'result': 'success'})
 
-# 푸시 테스트
+# 푸시 테스트__
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
