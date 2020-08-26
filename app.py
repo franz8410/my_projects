@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
+#client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
+client = MongoClient('localhost', 27017)
 db = client.mobilecard
 
 
@@ -24,6 +25,17 @@ def home():
 @app.route('/my_page')
 def my_page():
     return render_template('my_page.html')
+
+
+@app.route('/e_search', methods=['GET'])
+def get_review():
+    school_name = request.args.get('schoolName')
+    school_result = list(db.school.find({'name':{'$regex': school_name}}, {'_id': False}))
+#   exact 검색을 할 경우엔 아래의 코드
+#   school_result = list(db.school.find({'name': school_name}, {'_id': False}))
+    print(school_result)
+    result = {'result': 'success', 'msg': school_result}
+    return jsonify(result)
 
 
 @app.route('/webhook', methods=['POST'])

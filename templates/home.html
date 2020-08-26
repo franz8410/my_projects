@@ -7,6 +7,10 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
         <style>
@@ -24,7 +28,7 @@
             }
 
             h3 {
-                padding-top: 50px;
+                padding-top: 10px;
             }
 
             .header {
@@ -32,12 +36,64 @@
                 padding-bottom: 15px;
 
             }
+
+            .input-search {
+                width: 50%;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .result-form {
+                font-size: medium;
+            }
         </style>
 
         <script>
+            $(document).ready(function () {
+                $('#e-school-name-result').empty();
+            });
+
+            function search_school() {
+                $('#e-school-name-result').empty();
+                let schoolName = $("#e-school-name").val();
+                if (schoolName === '') {
+                    alert('검색어를 입력하세요.');
+                    return;
+                }
+
+                $.ajax({
+                    type: "GET",
+                    url: "/e_search",
+                    data: {'schoolName': schoolName},
+                    success: function (response) {
+                        if (response["result"] == "success" && response["msg"].length > 0) {
+                            let eSchoolData = response["msg"];
+                            for (let index = 0; index < eSchoolData.length; index++) {
+                                let name = eSchoolData[index]['name'];
+                                let address = eSchoolData[index]['address'];
+                                let latitude = eSchoolData[index]['latitude'];
+                                let longitude = eSchoolData[index]['longitude'];
+                                let resultData = `<P>학교의 이름: ${name}</P>
+                                                  <P>학교의 주소: ${address}</p>
+                                                  <p>학교의 위도: ${latitude}</p>
+                                                  <p>학교의 경도: ${longitude}</p>
+                                                  <button onclick="choice()">선택하기</button>
+                                                  <hr>
+                                                 `;
+                                $("#e-school-name-result").append(resultData);
+                            }
+
+                        } else {
+                            alert("검색결과가 없습니다.");
+                        }
+                    }
+                })
+            }
+
             function cardIssue() {
                 confirm("발급받으시겠습니까?");
             }
+
         </script>
     </head>
 
@@ -62,32 +118,29 @@
                             <a class="nav-link" data-toggle="tab" href="#home_high">고등학교</a>
                         </li>
                     </ul>
+                    <p></p>
+                    <p></p>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="home_elementary">
-                            <h3>초등학교 검색</h3>
-                            <p>검색결과에 따라 초등학교 이름이 노출될겁니다</p>
-                            <p>검색결과에 따라 초등학교 위치가 노출될 겁니다</p>
-                            <p>검색결과에 따라 초등학교 이름이 노출될 겁니다</p>
-                            <p>유저의 이름이 노출될 겁니다</p>
-                            <p>유저가 졸업년도를 입력할 겁니다.</p>
+                            <input type="text" class="input-search" id="e-school-name" placeholder="초등학교 이름을 입력하세요">
+                            <button onclick="search_school()">검색</button>
+                            <h3>초등학교 검색 결과</h3>s
+                            <hr>
+                            <div class="result-form" id="e-school-name-result"></div>
                             <button onclick="cardIssue()">발급받기</button>
                         </div>
                         <div class="tab-pane fade" id="home_middle">
-                            <h3>중학교 검색</h3>
-                            <p>검색결과에 따라 중학교 이름이 노출될겁니다</p>
-                            <p>검색결과에 따라 중학교 위치가 노출될 겁니다</p>
-                            <p>검색결과에 따라 중학교 이름이 노출될 겁니다</p>
-                            <p>유저의 이름이 노출될 겁니다</p>
-                            <p>유저가 졸업년도를 입력할 겁니다.</p>
+                            <input type="text" class="input-search" id="m-school-name" placeholder="중학교 이름을 입력하세요">
+                            <button onclick="search_school()">검색</button>
+                            <h3>중학교 검색 결과</h3>
+                            <div class="result-form" id="m-school-name-result"></div>
                             <button onclick="cardIssue()">발급받기</button>
                         </div>
                         <div class="tab-pane fade" id="home_high">
-                            <h3>고등학교 검색</h3>
-                            <p>검색결과에 따라 고등학교 이름이 노출될겁니다</p>
-                            <p>검색결과에 따라 고등학교 위치가 노출될 겁니다</p>
-                            <p>검색결과에 따라 고등학교 이름이 노출될 겁니다</p>
-                            <p>유저의 이름이 노출될 겁니다</p>
-                            <p>유저가 졸업년도를 입력할 겁니다.</p>
+                            <input type="text" class="input-search" id="h-school-name" placeholder="고등학교 이름을 입력하세요">
+                            <button onclick="search_school()">검색</button>
+                            <h3>고등학교 검색 결과</h3>
+                            <div class="result-form" id="h-school-name-result"></div>
                             <button onclick="cardIssue()">발급받기</button>
                         </div>
                     </div>
