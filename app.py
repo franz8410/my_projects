@@ -9,8 +9,13 @@ db = client.mobilecard
 
 ## HTML 화면 보여주기
 @app.route('/')
-def homework():
+def home():
     return render_template('home.html')
+
+
+@app.route('/mypage')
+def mypage():
+    return render_template('my_page.html')
 
 
 @app.route('/webhook', methods=['POST'])
