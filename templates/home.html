@@ -78,11 +78,11 @@
                                 let address = SchoolData[index]['address'];
                                 let latitude = SchoolData[index]['latitude'];
                                 let longitude = SchoolData[index]['longitude'];
-                                let resultData = `<P>학교의 이름: <span id="choice-school">${name}</span></p>
+                                let resultData = `<P>학교의 이름: ${name}</p>
                                                   <P>학교의 주소: ${address}</p>
                                                   <p>학교의 위도: ${latitude}</p>
                                                   <p>학교의 경도: ${longitude}</p>
-                                                  <button onclick="choice_school()">선택하기</button>
+                                                  <button onclick="choice_school('${name}')">선택하기</button>
                                                   <hr>
                                                  `;
                                 $("#school-name-result").append(resultData);
@@ -95,8 +95,8 @@
                 })
             }
 
-            function choice_school() {
-                let choiceSchoolName = $("#choice-school").text();
+            function choice_school(name) {
+                let choiceSchoolName = name;
                 $('#school-name-result').empty();
 
                 $.ajax({
