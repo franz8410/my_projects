@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-# client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
+# client = MongoClient('localhost', 27017)
 db = client.mobilecard
 
 
