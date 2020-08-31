@@ -50,12 +50,12 @@
 
         <script>
             $(document).ready(function () {
-                $('#e-school-name-result').empty();
+                $('#school-name-result').empty();
             });
 
             function search_school() {
-                $('#e-school-name-result').empty();
-                let schoolName = $("#e-school-name").val();
+                $('#school-name-result').empty();
+                let schoolName = $("#school-name").val();
                 if (schoolName === '') {
                     alert('검색어를 입력하세요.');
                     return;
@@ -63,24 +63,24 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "/e_search",
+                    url: "/search",
                     data: {'schoolName': schoolName},
                     success: function (response) {
                         if (response["result"] == "success" && response["msg"].length > 0) {
-                            let eSchoolData = response["msg"];
-                            for (let index = 0; index < eSchoolData.length; index++) {
-                                let name = eSchoolData[index]['name'];
-                                let address = eSchoolData[index]['address'];
-                                let latitude = eSchoolData[index]['latitude'];
-                                let longitude = eSchoolData[index]['longitude'];
-                                let resultData = `<P>학교의 이름: ${name}</P>
+                            let SchoolData = response["msg"];
+                            for (let index = 0; index < SchoolData.length; index++) {
+                                let name = SchoolData[index]['name'];
+                                let address = SchoolData[index]['address'];
+                                let latitude = SchoolData[index]['latitude'];
+                                let longitude = SchoolData[index]['longitude'];
+                                let resultData = `<P>학교의 이름: <span id="choice-school">${name}</span></p>
                                                   <P>학교의 주소: ${address}</p>
                                                   <p>학교의 위도: ${latitude}</p>
                                                   <p>학교의 경도: ${longitude}</p>
-                                                  <button onclick="choice()">선택하기</button>
+                                                  <button onclick="choice_school()">선택하기</button>
                                                   <hr>
                                                  `;
-                                $("#e-school-name-result").append(resultData);
+                                $("#school-name-result").append(resultData);
                             }
 
                         } else {
@@ -90,9 +90,42 @@
                 })
             }
 
+            function choice_school() {
+                let choiceSchoolName = $("#choice-school").text();
+                $('#school-name-result').empty();
+
+                $.ajax({
+                    type: "GET",
+                    url: "/choice",
+                    data: {'choiceSchoolName': choiceSchoolName},
+                    success: function (response) {
+                        if (response["result"] == "success" && response["msg"].length > 0) {
+                            let choiceSchoolData = response["msg"];
+                            for (let index = 0; index < choiceSchoolData.length; index++) {
+                                let name = choiceSchoolData[index]['name'];
+                                let address = choiceSchoolData[index]['address'];
+                                let latitude = choiceSchoolData[index]['latitude'];
+                                let longitude = choiceSchoolData[index]['longitude'];
+                                let resultData = `<P>학교의 이름: ${name}</P>
+                                                  <P>학교의 주소: ${address}</p>
+                                                  <p>학교의 위도: ${latitude}</p>
+                                                  <p>학교의 경도: ${longitude}</p>
+                                                  <button onclick="cardIssue()">발급받기</button>
+                                                  <hr>
+                                                 `;
+                                $("#school-name-result").append(resultData);
+                            }
+
+                        }
+                    }
+                })
+            }
+
+
             function cardIssue() {
                 confirm("발급받으시겠습니까?");
             }
+            // choice_school() 함수 호출 이후 출력된 html 영역의 div 지정 + id값을 각각 주고, 해당 값을 통해 카드를 create 할 수 있는 post api와 연결해야 함
 
         </script>
     </head>
@@ -107,41 +140,16 @@
                         <a class="headline" href="/my_page">마이페이지</a>
                     </div>
                     <p></p>
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#home_elementary">초등학교</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#home_middle">중학교</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#home_high">고등학교</a>
-                        </li>
-                    </ul>
-                    <p></p>
-                    <p></p>
+                    <input type="radio" name="chk_info" value="e_school"> 초등학교
+                    <input type="radio" name="chk_info" value="m_school"> 중학교
+                    <input type="radio" name="chk_info" value="h_school"> 고등학교
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="home_elementary">
-                            <input type="text" class="input-search" id="e-school-name" placeholder="초등학교 이름을 입력하세요">
+                            <input type="text" class="input-search" id="school-name" placeholder="학교 이름을 입력하세요">
                             <button onclick="search_school()">검색</button>
-                            <h3>초등학교 검색 결과</h3>s
+                            <h3>학교 검색 결과</h3>
                             <hr>
-                            <div class="result-form" id="e-school-name-result"></div>
-                            <button onclick="cardIssue()">발급받기</button>
-                        </div>
-                        <div class="tab-pane fade" id="home_middle">
-                            <input type="text" class="input-search" id="m-school-name" placeholder="중학교 이름을 입력하세요">
-                            <button onclick="search_school()">검색</button>
-                            <h3>중학교 검색 결과</h3>
-                            <div class="result-form" id="m-school-name-result"></div>
-                            <button onclick="cardIssue()">발급받기</button>
-                        </div>
-                        <div class="tab-pane fade" id="home_high">
-                            <input type="text" class="input-search" id="h-school-name" placeholder="고등학교 이름을 입력하세요">
-                            <button onclick="search_school()">검색</button>
-                            <h3>고등학교 검색 결과</h3>
-                            <div class="result-form" id="h-school-name-result"></div>
-                            <button onclick="cardIssue()">발급받기</button>
+                            <div class="result-form" id="school-name-result"></div>
                         </div>
                     </div>
                 </div>

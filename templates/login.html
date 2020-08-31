@@ -4,10 +4,17 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Back to the School</title>
-        <link href="{{url_for('static', filename='bootstrap_mobilecard.css')}}" rel="stylesheet" id="login-css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="{{ url_for('static', filename='bootstrap_mobilecard.css') }}" rel="stylesheet" id="login-css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+              id="bootstrap-css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+        <script>
+            Kakao.Auth.authorize({
+                redirectUri: 'localhost:5000/login'
+            });
+
+        </script>
     </head>
     <body>
         <div class="wrapper fadeInDown">

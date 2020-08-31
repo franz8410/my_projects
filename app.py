@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-#client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
+# client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
 client = MongoClient('localhost', 27017)
 db = client.mobilecard
 
@@ -27,14 +27,23 @@ def my_page():
     return render_template('my_page.html')
 
 
-@app.route('/e_search', methods=['GET'])
-def get_review():
+@app.route('/search', methods=['GET'])
+def get_school():
     school_name = request.args.get('schoolName')
     school_result = list(db.school.find({'name':{'$regex': school_name}}, {'_id': False}))
 #   exact 검색을 할 경우엔 아래의 코드
 #   school_result = list(db.school.find({'name': school_name}, {'_id': False}))
     print(school_result)
     result = {'result': 'success', 'msg': school_result}
+    return jsonify(result)
+
+
+@app.route('/choice', methods=['GET'])
+def choice_school():
+    choice_school_name = request.args.get('choiceSchoolName')
+    choice_school_result = list(db.school.find({'name': choice_school_name}, {'_id': False}))
+    print(choice_school_result)
+    result = {'result': 'success', 'msg': choice_school_result}
     return jsonify(result)
 
 
@@ -45,13 +54,13 @@ def web_hook():
     os.system('cd /home/ubuntu/my_projects && git pull')
     return jsonify({'result': 'success'})
 
-# 푸시 테스트
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
-## 로그인 정보 참조 코드
 
+# 로그인 정보 참조 코드
 # from bson import ObjectId
 # from flask import Flask, render_template, request, session, redirect, jsonify
 # from pymongo import MongoClient
