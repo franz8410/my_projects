@@ -14,7 +14,6 @@ client = MongoClient('mongodb://franz8410:test@3.34.48.67', 27017)
 db = client.mobilecard
 
 
-## HTML 화면 보여주기
 @app.route('/')
 def log_in():
     return render_template('login.html')
