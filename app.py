@@ -55,12 +55,12 @@ def choice_school():
     return jsonify(result)
 
 
-@app.route('/webhook', methods=['POST'])
-def web_hook():
-    web_hook_data = request.form
-    print(web_hook_data)
-    os.system('cd /home/ubuntu/my_projects && git pull')
-    return jsonify({'result': 'success'})
+# @app.route('/webhook', methods=['POST'])
+# def web_hook():
+#     web_hook_data = request.form
+#     print(web_hook_data)
+#     os.system('cd /home/ubuntu/my_projects && git pull')
+#     return jsonify({'result': 'success'})
 
 
 if __name__ == '__main__':
