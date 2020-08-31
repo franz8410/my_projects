@@ -1,6 +1,9 @@
 import os
 
 from flask import Flask, render_template, jsonify, request
+import requests
+import json
+
 
 app = Flask(__name__)
 
@@ -15,6 +18,12 @@ db = client.mobilecard
 @app.route('/')
 def log_in():
     return render_template('login.html')
+
+
+@app.route('/oauth')
+def oauth():
+    code = str(request.args.get('code'))
+    return str(code)
 
 
 @app.route('/home')
@@ -53,7 +62,6 @@ def web_hook():
     print(web_hook_data)
     os.system('cd /home/ubuntu/my_projects && git pull')
     return jsonify({'result': 'success'})
-
 
 
 if __name__ == '__main__':

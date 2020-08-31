@@ -10,6 +10,7 @@
 
         <title>Back to the School</title>
         <link href="{{ url_for('static', filename='bootstrap_mobilecard.css') }}" rel="stylesheet" id="login-css">
+
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
               id="bootstrap-css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,14 +24,15 @@
     </head>
     <body>
         <div class="wrapper fadeInDown">
-            <div id="formContent">
+            <a id="formContent">
                 <div class="fadeIn first">
                     <h1>Back to the School</h1>
-                    <img src="https://t1.kakaocdn.net/blockadmin/etc_franz/etc/rectangle_new.png" id="icon" alt="Icon"/>
+                    <img src="/static/rectangle_new.png" id="icon" alt="Icon"/>
                 </div>
 
                 <form>
-                    <input type="submit" class="fadeIn fourth" value="카카오계정 로그인" onclick="login()">
+                    <a href="https://kauth.kakao.com//oauth/authorize?client_id=1409d473f6cf52d7fb9998667b5aa6b2&redirect_uri=franzkafka.xyz/home&response_type=code">
+                    <img src="/static/kakao_login_large_wide.png" value="카카오계정 로그인"> </a>
                 </form>
             </div>
         </div>
