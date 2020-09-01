@@ -25,7 +25,7 @@ def oauth() :
     url = "https://kauth.kakao.com/oauth/token"
     payload = "grant_type=authorization_code"
     payload += "&client_id=cb3fc338e41333667d4db0691d1296ca"
-    payload += "&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Foauth&code=" + str(code)
+    payload += "&redirect_uri=http%3A%2F%2Ffranzkafka.xyz%2Foauth&code=" + str(code)
     headers = {
         'Content-Type' : "application/x-www-form-urlencoded",
         'Cache-Control' : "no-cache",
@@ -86,12 +86,12 @@ def log_out() :
     return render_template('logout.html')
 
 
-# @app.route('/webhook', methods=['POST'])
-# def web_hook():
-#     web_hook_data = request.form
-#     print(web_hook_data)
-#     os.system('cd /home/ubuntu/my_projects && git pull')
-#     return jsonify({'result': 'success'})
+@app.route('/webhook', methods=['POST'])
+def web_hook():
+    web_hook_data = request.form
+    print(web_hook_data)
+    os.system('cd /home/ubuntu/my_projects && git pull')
+    return jsonify({'result': 'success'})
 
 
 if __name__ == '__main__' :
