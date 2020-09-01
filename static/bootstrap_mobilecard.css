@@ -258,9 +258,11 @@ input[type=text]:placeholder {
 
 #icon {
     padding: 15px 15px 15px 15px;
-    width: 70%;
+    width: 100%;
 }
 
-h1 {
-    padding-top: 20px;
+h3 {
+    padding-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

@@ -1,10 +1,10 @@
-<!doctype html> ##
+<!doctype html>
 <html lang="ko">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta property="og:title" content="프란츠의 백투더스쿨"/>
+        <meta property="og:title" content="프란츠의 학생카드발급하기"/>
         <meta property="og:description" content="내가 다니고 있는, 혹은 내가 다니고 있던 학교를 검색하고 모바일카드를 발급받아보세요!"/>
         <meta property="og:image" content="{{ url_for('static', filename='mobliecard.png') }}"/>
 
@@ -140,15 +140,15 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Back to the School : Home</h1>
+                    <h1>프란츠의 학생카드발급하기 : Home</h1>
                     <div class="header">
-                        <a class="headline" onclick="logOut()">로그아웃</a>
+                        <a class="headline" href="https://kauth.kakao.com/oauth/logout?client_id=cb3fc338e41333667d4db0691d1296ca&logout_redirect_uri=http://franzkafka.xyz/logout">로그아웃</a>
                         <a class="headline" href="/my_page">마이페이지</a>
                     </div>
                     <p></p>
-                    <input type="radio" name="chk_info" value="e_school"> 초등학교
-                    <input type="radio" name="chk_info" value="m_school"> 중학교
-                    <input type="radio" name="chk_info" value="h_school"> 고등학교
+{#                    <input type="radio" name="chk_info" value="e_school"> 초등학교#}
+{#                    <input type="radio" name="chk_info" value="m_school"> 중학교#}
+{#                    <input type="radio" name="chk_info" value="h_school"> 고등학교#}
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="home_elementary">
                             <input type="text" class="input-search" id="school-name" placeholder="학교 이름을 입력하세요">

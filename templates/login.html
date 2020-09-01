@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <meta property="og:title" content="프란츠의 백투더스쿨"/>
+        <meta property="og:title" content="프란츠의 학생카드발급하기"/>
         <meta property="og:description" content="내가 다니고 있는, 혹은 내가 다니고 있던 학교를 검색하고 모바일카드를 발급받아보세요!"/>
         <meta property="og:image" content="{{ url_for('static', filename='mobliecard.png') }}"/>
 
@@ -16,23 +16,24 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <script>
-            Kakao.Auth.authorize({
-                redirectUri: 'localhost:5000/login'
-            });
+
 
         </script>
+
+
     </head>
     <body>
         <div class="wrapper fadeInDown">
             <a id="formContent">
                 <div class="fadeIn first">
-                    <h1>Back to the School</h1>
-                    <img src="/static/rectangle_new.png" id="icon" alt="Icon"/>
+                    <h3>프란츠의</h3>
+                    <h2>학생카드발급하기</h2>
+                    <img src="/static/mobilecard.png" id="icon" alt="Icon"/>
                 </div>
 
                 <form>
-                    <a href="https://kauth.kakao.com//oauth/authorize?client_id=1409d473f6cf52d7fb9998667b5aa6b2&redirect_uri=franzkafka.xyz/home&response_type=code">
-                    <img src="/static/kakao_login_large_wide.png" value="카카오계정 로그인"> </a>
+                    <a href="https://kauth.kakao.com/oauth/authorize?&response_type=code&client_id=cb3fc338e41333667d4db0691d1296ca&redirect_uri=http://franzkafka.xyz/oauth">
+                    <img src="/static/kakao_login.png" value="카카오계정 로그인"> </a>
                 </form>
             </div>
         </div>

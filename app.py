@@ -1,9 +1,8 @@
 import os
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session
 import requests
 import json
-
 
 app = Flask(__name__)
 
@@ -15,44 +14,76 @@ db = client.mobilecard
 
 
 @app.route('/')
-def log_in():
+def log_in() :
     return render_template('login.html')
 
 
 @app.route('/oauth')
-def oauth():
+def oauth() :
     code = str(request.args.get('code'))
-    return str(code)
+
+    url = "https://kauth.kakao.com/oauth/token"
+    payload = "grant_type=authorization_code"
+    payload += "&client_id=cb3fc338e41333667d4db0691d1296ca"
+    payload += "&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Foauth&code=" + str(code)
+    headers = {
+        'Content-Type' : "application/x-www-form-urlencoded",
+        'Cache-Control' : "no-cache",
+    }
+    response = requests.request("POST", url, data=payload, headers=headers)
+    access_token = json.loads(((response.text).encode('utf-8')))['access_token']
+
+    url = "https://kapi.kakao.com/v1/user/signup"
+
+    headers.update({'Authorization' : "Bearer " + str(access_token)})
+
+    url = "https://kapi.kakao.com/v2/user/me"
+    response = requests.request("POST", url, headers=headers)
+
+    access = json.loads(((response.text).encode('utf-8')))
+    log_in_user = access["id"]
+    join_user = list(db.user.find({'id' : log_in_user}, {'_id' : False}))
+
+    if not join_user:
+        db.user.insert_one(access)
+        return render_template('home.html')
+    else:
+        return render_template('home.html')
 
 
 @app.route('/home')
-def home():
+def home() :
     return render_template('home.html')
 
 
 @app.route('/my_page')
-def my_page():
+def my_page() :
     return render_template('my_page.html')
 
 
 @app.route('/search', methods=['GET'])
-def get_school():
+def get_school() :
     school_name = request.args.get('schoolName')
-    school_result = list(db.school.find({'name':{'$regex': school_name}}, {'_id': False}))
-#   exact 검색을 할 경우엔 아래의 코드
-#   school_result = list(db.school.find({'name': school_name}, {'_id': False}))
+    school_result = list(db.school.find({'name' : {'$regex' : school_name}}, {'_id' : False}))
+    #   exact 검색을 할 경우엔 아래의 코드
+    #   school_result = list(db.school.find({'name': school_name}, {'_id': False}))
     print(school_result)
-    result = {'result': 'success', 'msg': school_result}
+    result = {'result' : 'success', 'msg' : school_result}
     return jsonify(result)
 
 
 @app.route('/choice', methods=['GET'])
-def choice_school():
+def choice_school() :
     choice_school_name = request.args.get('choiceSchoolName')
-    choice_school_result = list(db.school.find({'name': choice_school_name}, {'_id': False}))
+    choice_school_result = list(db.school.find({'name' : choice_school_name}, {'_id' : False}))
     print(choice_school_result)
-    result = {'result': 'success', 'msg': choice_school_result}
+    result = {'result' : 'success', 'msg' : choice_school_result}
     return jsonify(result)
+
+
+@app.route('/logout')
+def log_out() :
+    return render_template('logout.html')
 
 
 # @app.route('/webhook', methods=['POST'])
@@ -63,9 +94,8 @@ def choice_school():
 #     return jsonify({'result': 'success'})
 
 
-if __name__ == '__main__':
+if __name__ == '__main__' :
     app.run('0.0.0.0', port=5000, debug=True)
-
 
 # 로그인 정보 참조 코드
 # from bson import ObjectId
@@ -135,11 +165,6 @@ if __name__ == '__main__':
 #     db.user.insert_one({'user_id': user_id, 'password': password, 'nickname': nickname})
 #     return render_template('login.html')
 #
-#
-# @app.route('/logout', methods=['POST'])
-# def logout():
-#     session.pop('sessionID')
-#     return jsonify({'result': 'success'})
 #
 #
 # if __name__ == '__main__':
