@@ -1,5 +1,3 @@
-<img src="https://t1.kakaocdn.net/blockadmin/etc_franz/etc/rectangle_new.png">
-
 # 나의 프로젝트
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ohahohah/readme-template/graphs/commit-activity) 
 
